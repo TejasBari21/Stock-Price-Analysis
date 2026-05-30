@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ stock_name }} Stock Analysis</title>
+    <style>
+        /* Page background with gradient */
+        body {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .live-price-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .live-price-button {
+            background-color: #e0f7fa;
+            color: #0277bd;
+            padding: 20px;
+            border-radius: 12px;
+            border: none;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            min-width: 300px;
+        }
+
+        .live-price-button:hover {
+            background-color: #b3e5fc;
+            transform: scale(1.05);
+        }
+
+        /* Graph container styling */
+        .graph-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border: 3px solid #0056b3;
+            text-align: center;
+            position: relative;
+        }
+
+        .graph-container h1 {
+            text-align: center;
+            color: #fff;
+            background: #0056b3;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 0;
+        }
+
+        /* Fix mode bar alignment */
+        .graph-container .js-plotly-plot {
+            position: relative;
+            width: 100% !important;
+            height: auto !important;
+            overflow: hidden;
+        }
+
+        .modebar {
+            position: relative;
+            top: 20px !important;
+            left: 80% !important;
+            display: flex;
+            flex-direction: row !important;
+            justify-content: center;
+            flex-wrap: nowrap;
+            padding: 2px !important;
+            border-radius: 3px !important;
+            width: fit-content;
+            min-width: fit-content;
+            white-space: nowrap;
+        }
+
+        /* Button container for navigation */
+        .back-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Live Price -->
+    <div class="live-price-container">
+        <button class="live-price-button">
+            Live Price: ${{ live_price }}
+        </button>
+    </div>
+
+    <!-- Price Chart -->
+    <div class="graph-container">
+        <h1>{{ stock_name }} Stock Prices</h1>
+        {{ plots['price'] | safe }}
+    </div>
+
+    <!-- Volume Chart -->
+    <div class="graph-container">
+        <h1>{{ stock_name }} Stock Volume</h1>
+        {{ plots['volume'] | safe }}
+    </div>
+
+    <!-- Candlestick Chart -->
+    <div class="graph-container">
+        <h1>{{ stock_name }} Candlestick Chart</h1>
+        {{ plots['candlestick'] | safe }}
+    </div>
+
+    <!-- Daily Return Chart -->
+    <div class="graph-container">
+        <h1>{{ stock_name }} Daily Returns</h1>
+        {{ plots['daily_return'] | safe }}
+    </div>
+
+    <!-- Moving Average Chart -->
+    <div class="graph-container">
+        <h1>{{ stock_name }} Moving Average</h1>
+        {{ plots['moving_average'] | safe }}
+    </div>
+
+    <!-- Prediction Chart -->
+    <div class="graph-container">
+        <h1>Predictions for {{ stock_name }}</h1>
+        {{ plots['prediction'] | safe }}
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-container">
+        <a href="/" class="back-button">Go Back</a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Analysis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, hsl(188, 100%, 82%), hsl(233, 68%, 63%));
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #f5f5f5;
+        }
+
+        .title-container {
+            background-color: #007bff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            color: #fff;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        form {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #f5f5f5;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select, input[type="submit"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #2b2b2b;
+            color: #f5f5f5;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .plotly-graph {
+            margin: 20px auto;
+            max-width: 1000px;
+            min-height: auto;
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title-container">
+        <h1>Stock Price Analysis</h1>
+    </div>
+    
+    <h2> Enter Company Stock</h2>
+    
+    <!-- Stock Selection Form -->
+    <form action="/submit_stock" method="POST">
+        
+        <label for="stockName"> Enter Stock Name:</label>
+        <input type="text" name="stockName" placeholder="e.g., Amazon, Apple, Google">
+        <input type="submit" value="Submit">
+    </form>
+    
+    {% if plot1_html %}
+        <div class="title-container">
+            <h1>{{ stock_name.capitalize() }} Stock Prices</h1>
+        </div>
+        <div class="plotly-graph">
+            {{ plot1_html|safe }}
+        </div>
+
+        <div class="title-container">
+            <h1>{{ stock_name.capitalize() }} Stock Volume</h1>
+        </div>
+        <div class="plotly-graph">
+            {{ plot2_html|safe }}
+        </div>
+
+        <div class="title-container">
+            <h1>{{ stock_name.capitalize() }} Candlestick Chart</h1>
+        </div>
+        <div class="plotly-graph">
+            {{ plot3_html|safe }}
+        </div>
+
+        <div class="title-container">
+            <h1>{{ stock_name.capitalize() }} Daily Returns</h1>
+        </div>
+        <div class="plotly-graph">
+            {{ plot4_html|safe }}
+        </div>
+    {% endif %}
+
+</body>
+</html>

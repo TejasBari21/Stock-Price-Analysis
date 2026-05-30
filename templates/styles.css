@@ -1,0 +1,90 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Black background */
+    background-image: linear-gradient(to right, #ff0080, #00ff80); /* Neon gradient */
+    background-size: cover; /* Cover the entire background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff; /* White text color */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark form background with slight transparency */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    font-size: 16px;
+    color: #f5f5f5; /* Light label text */
+    margin-bottom: 10px;
+    display: block;
+}
+
+select, input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #555; /* Slightly darker border */
+    font-size: 16px;
+    background-color: #333; /* Darker input background */
+    color: #f5f5f5; /* Light input text */
+}
+
+select:focus, input[type="submit"]:focus {
+    outline: none;
+    border-color: #00ff80; /* Neon color border on focus */
+}
+
+input[type="submit"] {
+    background-color: #ff0080; /* Neon button */
+    color: #fff; /* White text */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+input[type="submit"]:hover {
+    background-color: #00ff80; /* Neon color on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+input[type="submit"]:active {
+    background-color: #ff0080; /* Original neon color when pressed */
+    transform: translateY(0); /* Reset lift when pressed */
+}
+
+.graph-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.graph-container .modebar {
+    position: absolute !important;
+    top: -50px !important; /* Move modebar above the chart */
+    left: 50% !important;
+    transform: translateX(-50%);
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 5px !important;
+    padding: 5px !important;
+    z-index: 1000 !important;
+}
